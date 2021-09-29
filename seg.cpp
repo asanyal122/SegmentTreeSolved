@@ -5,9 +5,10 @@ using namespace std;
 vector<int> tree[MAX];
 
 string s;
-
+//used for building segment tree
 void build(int idx,int l,int r)
 {
+	//base case
     if(l>r)
     {
         return;
@@ -19,7 +20,8 @@ void build(int idx,int l,int r)
         tree[idx]=v;
         tree[l][s[l]-'a']=1;
     }
-
+	
+	//find middle index
     int mid=(l+r)/2;
     build(idx*2,l,mid);
     build(idx*2+1,mid+1,r);
@@ -31,6 +33,7 @@ void build(int idx,int l,int r)
     return;
 }
 
+//used to query the tree
 int query(int idx,int l,int r,int ql,int qr,char ch)
 {
     if(ql>r || qr<l)
